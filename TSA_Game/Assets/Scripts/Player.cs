@@ -8,44 +8,31 @@ public class Player : MonoBehaviour
     public float accel;
     public float jumpImpulse;
     public float gravity = 1f;
+    public float coyoteTime = 0.5f;
+    public float dragCoefficient = 1f;
 
     Rigidbody rb;
     SpriteRenderer sr;
     bool grounded = false;
+    float timeSinceGrounded = 0.0f;
+    bool jumping = false;
 
-    public Vector2 gravity_bezier_p0;
-    public Vector2 gravity_bezier_p1;
-    public Vector2 gravity_bezier_p2;
-    public Vector2 gravity_bezier_p3;
-
-    Vector2 lerp_vec2(Vector2 a, Vector2 b, float t)
+    Vector2 DragForce()
     {
-        return new Vector2(Mathf.Lerp(a.x, b.x, t), Mathf.Lerp(a.y, b.y, t));
-    }
-
-    float lerp_cubic_bezier(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, float t)
-    {
-        Vector2 q0, q1, q2;
-        Vector2 r0, r1;
-
-        q0 = lerp_vec2(p0, p1, t);
-        q1 = lerp_vec2(p1, p2, t);
-        q2 = lerp_vec2(p2, p3, t);
-
-        r0 = lerp_vec2(q0, q1, t);
-        r1 = lerp_vec2(q1, q2, t);
-
-        return lerp_vec2(r0, r1, t).y;
+        /*
+        Fd = 1/2 * p * v ^ 2 * Cd * A
+        where:
+            p = 1.293 (air density)
+            v = velocity
+            Cd = Drag Coefficient
+            A = 0.5 (area)
+        */
+        return new Vector2(1.293f * Mathf.Pow(rb.velocity.x, 2) * dragCoefficient * 0.5f * 0.5f, 1.293f * Mathf.Pow(rb.velocity.y, 2) * dragCoefficient * 0.5f * 0.5f);
     }
 
     bool terminal_velocity()
     {
         return rb.velocity.y <= -(Mathf.Sqrt(2 * rb.mass * gravity / 0.5f));
-    }
-
-    float falling_speed(float t)
-    {
-        return -lerp_cubic_bezier(gravity_bezier_p0, gravity_bezier_p1, gravity_bezier_p2, gravity_bezier_p3, t) * gravity;
     }
 
     void Start()
@@ -56,11 +43,17 @@ public class Player : MonoBehaviour
     //float time = 0.0f;
     void FixedUpdate()
     {
-        rb.velocity += new Vector3(Input.GetAxis("Horizontal") * accel, (!grounded) ? ((terminal_velocity()) ? 0 : falling_speed()) : 0, 0);
+        Vector2 dragForce = DragForce();
+        rb.velocity += new Vector3(Input.GetAxis("Horizontal") * accel - dragForce.x, ((!grounded) ? ((terminal_velocity()) ? 0 : -gravity) : 0) - dragForce.y, 0);
 
-        if ((Input.GetAxis("Vertical") > 0 || Input.GetKeyDown("space")) && grounded)
+        if ((Input.GetAxis("Vertical") > 0 || Input.GetKeyDown("space")) && (grounded || timeSinceGrounded > 0.0f) && !jumping)
         {
-            rb.AddForce(new Vector3(0, jumpImpulse, 0), ForceMode.Impulse);
+            rb.AddForce(new Vector3(0, jumpImpulse, 0), ForceMode.Force);
+            jumping = true;
+        }
+        if (timeSinceGrounded > 0.0f)
+        {
+            timeSinceGrounded -= Time.deltaTime;
         }
        
         if (Input.GetAxis("Horizontal") < 0)
@@ -72,20 +65,13 @@ public class Player : MonoBehaviour
             sr.flipX = false;
         }
 
-        //transform.position = new Vector3(time * 4f, falling_speed(time) * 4f + 2, 1);
-        //time += 0.01f;
-        //if (time >= 1.0f)
-        //{
-        //    time = 0.0f;
-        //}
-        //print(String.Format("time: {0}, y: {1}", time, falling_speed(time)));
-
-        print(String.Format("vel(x: {0}, y: {1}, z: {2}), grounded: {3}, falling_speed: {4}", rb.velocity.x, rb.velocity.y, rb.velocity.z, grounded, falling_speed(0.0f)));
+        print(String.Format("vel(x: {0}, y: {1}, z: {2}), grounded: {3}, timeSinceGrounded: {4}, jumping: {5}, terminal_velocity: {8}, dragForce(x: {6}, y: {7})", rb.velocity.x, rb.velocity.y, rb.velocity.z, grounded, timeSinceGrounded, jumping, dragForce.x, dragForce.y, terminal_velocity()));
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground") { 
+        if (collision.gameObject.tag == "Ground") {
+            jumping = false;
             grounded = true;
         }
     }
@@ -94,6 +80,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
+            timeSinceGrounded = coyoteTime;
             grounded = false;
         }
     }

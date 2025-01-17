@@ -291,8 +291,8 @@ Transform:
   m_GameObject: {fileID: 749398121}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.1777, y: -2.5, z: 0}
-  m_LocalScale: {x: 10.4, y: 1, z: 1}
+  m_LocalPosition: {x: -5.1589, y: -2.02, z: 0}
+  m_LocalScale: {x: 10.5, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -914,14 +914,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033c533310e17014da15412531fac592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accel: 1
+  accel: 0.1
   jumpImpulse: 7
   gravity: 1
-  coyoteTime: 0
-  gravity_bezier_p0: {x: 0, y: 1}
-  gravity_bezier_p1: {x: 0.8, y: 1}
-  gravity_bezier_p2: {x: 0.95, y: 0.5}
-  gravity_bezier_p3: {x: 1, y: 0}
+  coyoteTime: 1
+  dragCoefficient: 1
 --- !u!212 &1871897961
 SpriteRenderer:
   m_ObjectHideFlags: 0
