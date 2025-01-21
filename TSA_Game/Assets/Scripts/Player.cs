@@ -27,7 +27,8 @@ public class Player : MonoBehaviour
             Cd = Drag Coefficient
             A = 0.5 (area)
         */
-        return new Vector2(1.293f * Mathf.Pow(rb.velocity.x, 2) * dragCoefficient * 0.5f * 0.5f, 1.293f * Mathf.Pow(rb.velocity.y, 2) * dragCoefficient * 0.5f * 0.5f);
+        return new Vector2(1.293f * Mathf.Pow(rb.velocity.x, 2) * Mathf.Sign(rb.velocity.x) * dragCoefficient * 0.5f * 0.5f,
+                           1.293f * Mathf.Pow(rb.velocity.y, 2) * Mathf.Sign(rb.velocity.y) * dragCoefficient * 0.5f * 0.5f);
     }
 
     bool terminal_velocity()
@@ -44,7 +45,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 dragForce = DragForce();
-        rb.velocity += new Vector3(Input.GetAxis("Horizontal") * accel - dragForce.x, ((!grounded) ? ((terminal_velocity()) ? 0 : -gravity) : 0) - dragForce.y, 0);
+        rb.velocity += new Vector3(Input.GetAxis("Horizontal") * accel - dragForce.x, ((!grounded) ? -gravity : 0) - dragForce.y, 0);
 
         if ((Input.GetAxis("Vertical") > 0 || Input.GetKeyDown("space")) && (grounded || timeSinceGrounded > 0.0f) && !jumping)
         {
@@ -65,7 +66,7 @@ public class Player : MonoBehaviour
             sr.flipX = false;
         }
 
-        print(String.Format("vel(x: {0}, y: {1}, z: {2}), grounded: {3}, timeSinceGrounded: {4}, jumping: {5}, terminal_velocity: {8}, dragForce(x: {6}, y: {7})", rb.velocity.x, rb.velocity.y, rb.velocity.z, grounded, timeSinceGrounded, jumping, dragForce.x, dragForce.y, terminal_velocity()));
+        print(String.Format("vel(x: {0}, y: {1}, z: {2}), grounded: {3}, timeSinceGrounded: {4}, jumping: {5}, terminal_velocity: {8}, dragForce(x: {6}, y: {7}), Horizontal: {9}", rb.velocity.x, rb.velocity.y, rb.velocity.z, grounded, timeSinceGrounded, jumping, dragForce.x, dragForce.y, terminal_velocity(), Input.GetAxis("Horizontal")));
     }
 
     private void OnCollisionEnter(Collision collision)
