@@ -11,13 +11,19 @@ C:\Program Files\Unity\Hub\Editor\2022.3.11f1\Editor\Unity.exe
 -name
 AssetImportWorker1
 -projectPath
-C:/Users/benblankenship/Downloads/Unity/TSA Game/VV-ARTSA-GAME/TSA_Game
+C:/Users/williamwoodruff/Downloads/Unity/VV-ARTSA-GAME/TSA_Game
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
+<<<<<<<< HEAD:TSA_Game/Logs/AssetImportWorker1.log
 50072
 Successfully changed project path to: C:/Users/benblankenship/Downloads/Unity/TSA Game/VV-ARTSA-GAME/TSA_Game
 C:/Users/benblankenship/Downloads/Unity/TSA Game/VV-ARTSA-GAME/TSA_Game
+========
+54353
+Successfully changed project path to: C:/Users/williamwoodruff/Downloads/Unity/VV-ARTSA-GAME/TSA_Game
+C:/Users/williamwoodruff/Downloads/Unity/VV-ARTSA-GAME/TSA_Game
+>>>>>>>> c34cb8ad9ce207c9af70bb795f7ac8ed9fd5a571:TSA_Game/Logs/AssetImportWorker1-prev.log
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -49,16 +55,25 @@ C:/Users/benblankenship/Downloads/Unity/TSA Game/VV-ARTSA-GAME/TSA_Game
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
+<<<<<<<< HEAD:TSA_Game/Logs/AssetImportWorker1.log
 Player connection [9652] Host "[IP] 10.2.10.170 [Port] 0 [Flags] 2 [Guid] 3579808058 [EditorId] 3579808058 [Version] 1048832 [Id] WindowsEditor(7,vvps-12185) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
 Player connection [9652] Host "[IP] 10.2.10.170 [Port] 0 [Flags] 2 [Guid] 3579808058 [EditorId] 3579808058 [Version] 1048832 [Id] WindowsEditor(7,vvps-12185) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 19 workers.
 Refreshing native plugins compatible for Editor in 9.27 ms, found 4 plugins.
+========
+Player connection [10908] Host "[IP] 10.2.10.98 [Port] 0 [Flags] 2 [Guid] 263421118 [EditorId] 263421118 [Version] 1048832 [Id] WindowsEditor(7,vvps-12186) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [10908] Host "[IP] 10.2.10.98 [Port] 0 [Flags] 2 [Guid] 263421118 [EditorId] 263421118 [Version] 1048832 [Id] WindowsEditor(7,vvps-12186) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[Physics::Module] Initialized MultithreadedJobDispatcher with 19 workers.
+Refreshing native plugins compatible for Editor in 9.16 ms, found 4 plugins.
+>>>>>>>> c34cb8ad9ce207c9af70bb795f7ac8ed9fd5a571:TSA_Game/Logs/AssetImportWorker1-prev.log
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.11f1 (d00248457e15)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/benblankenship/Downloads/Unity/TSA Game/VV-ARTSA-GAME/TSA_Game/Assets
+[Subsystems] Discovering subsystems at path C:/Users/williamwoodruff/Downloads/Unity/VV-ARTSA-GAME/TSA_Game/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
@@ -70,11 +85,16 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/MonoBleedingEdge/etc'
+<<<<<<<< HEAD:TSA_Game/Logs/AssetImportWorker1.log
 Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56240
+========
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56044
+>>>>>>>> c34cb8ad9ce207c9af70bb795f7ac8ed9fd5a571:TSA_Game/Logs/AssetImportWorker1-prev.log
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+<<<<<<<< HEAD:TSA_Game/Logs/AssetImportWorker1.log
 Registered in 0.006700 seconds.
 - Loaded All Assemblies, in  0.358 seconds
 Native extension for WindowsStandalone target not found
@@ -83,6 +103,16 @@ Mono: successfully reloaded assembly
 - Finished resetting the current domain, in  0.289 seconds
 Domain Reload Profiling: 646ms
 	BeginReloadAssembly (103ms)
+========
+Registered in 0.006950 seconds.
+- Loaded All Assemblies, in  0.376 seconds
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.312 seconds
+Domain Reload Profiling: 687ms
+	BeginReloadAssembly (110ms)
+>>>>>>>> c34cb8ad9ce207c9af70bb795f7ac8ed9fd5a571:TSA_Game/Logs/AssetImportWorker1-prev.log
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
@@ -90,6 +120,7 @@ Domain Reload Profiling: 646ms
 		CreateAndSetChildDomain (1ms)
 	RebuildCommonClasses (35ms)
 	RebuildNativeTypeToScriptingClass (12ms)
+<<<<<<<< HEAD:TSA_Game/Logs/AssetImportWorker1.log
 	initialDomainReloadingComplete (60ms)
 	LoadAllAssembliesAndSetupDomain (147ms)
 		LoadAssemblies (103ms)
@@ -110,6 +141,28 @@ Domain Reload Profiling: 646ms
 			BeforeProcessingInitializeOnLoad (2ms)
 			ProcessInitializeOnLoadAttributes (151ms)
 			ProcessInitializeOnLoadMethodAttributes (55ms)
+========
+	initialDomainReloadingComplete (63ms)
+	LoadAllAssembliesAndSetupDomain (155ms)
+		LoadAssemblies (109ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (152ms)
+			TypeCache.Refresh (151ms)
+				TypeCache.ScanAssembly (137ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (312ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (240ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (12ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (3ms)
+			ProcessInitializeOnLoadAttributes (161ms)
+			ProcessInitializeOnLoadMethodAttributes (57ms)
+>>>>>>>> c34cb8ad9ce207c9af70bb795f7ac8ed9fd5a571:TSA_Game/Logs/AssetImportWorker1-prev.log
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -117,6 +170,7 @@ Domain Reload Profiling: 646ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
+<<<<<<<< HEAD:TSA_Game/Logs/AssetImportWorker1.log
 - Loaded All Assemblies, in  0.715 seconds
 Refreshing native plugins compatible for Editor in 3.40 ms, found 4 plugins.
 Native extension for WindowsStandalone target not found
@@ -125,10 +179,21 @@ Mono: successfully reloaded assembly
 - Finished resetting the current domain, in  0.828 seconds
 Domain Reload Profiling: 1542ms
 	BeginReloadAssembly (143ms)
+========
+- Loaded All Assemblies, in  0.713 seconds
+Refreshing native plugins compatible for Editor in 3.89 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.833 seconds
+Domain Reload Profiling: 1545ms
+	BeginReloadAssembly (145ms)
+>>>>>>>> c34cb8ad9ce207c9af70bb795f7ac8ed9fd5a571:TSA_Game/Logs/AssetImportWorker1-prev.log
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (6ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
+<<<<<<<< HEAD:TSA_Game/Logs/AssetImportWorker1.log
 		CreateAndSetChildDomain (20ms)
 	RebuildCommonClasses (35ms)
 	RebuildNativeTypeToScriptingClass (12ms)
@@ -145,11 +210,30 @@ Domain Reload Profiling: 1542ms
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
 		SetupLoadedEditorAssemblies (628ms)
+========
+		CreateAndSetChildDomain (19ms)
+	RebuildCommonClasses (34ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (43ms)
+	LoadAllAssembliesAndSetupDomain (477ms)
+		LoadAssemblies (323ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (236ms)
+			TypeCache.Refresh (193ms)
+				TypeCache.ScanAssembly (176ms)
+			ScanForSourceGeneratedMonoScriptInfo (30ms)
+			ResolveRequiredComponents (11ms)
+	FinalizeReload (834ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (621ms)
+>>>>>>>> c34cb8ad9ce207c9af70bb795f7ac8ed9fd5a571:TSA_Game/Logs/AssetImportWorker1-prev.log
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (7ms)
 			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (86ms)
+<<<<<<<< HEAD:TSA_Game/Logs/AssetImportWorker1.log
 			ProcessInitializeOnLoadAttributes (435ms)
 			ProcessInitializeOnLoadMethodAttributes (90ms)
 			AfterProcessingInitializeOnLoad (4ms)
@@ -2693,6 +2777,22 @@ Memory consumption went from 275.4 MB to 274.5 MB.
 Total: 4.747500 ms (FindLiveObjects: 0.823000 ms CreateObjectMapping: 0.258500 ms MarkObjects: 3.221500 ms  DeleteObjects: 0.443500 ms)
 
 Prepare: number of updated asset objects reloaded= 0
+========
+			ProcessInitializeOnLoadAttributes (430ms)
+			ProcessInitializeOnLoadMethodAttributes (88ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (10ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 1.65 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5715 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 98 unused Assets / (0.9 MB). Loaded Objects now: 6161.
+Memory consumption went from 224.7 MB to 223.8 MB.
+Total: 2.777400 ms (FindLiveObjects: 0.268000 ms CreateObjectMapping: 0.159500 ms MarkObjects: 2.045900 ms  DeleteObjects: 0.303500 ms)
+
+>>>>>>>> c34cb8ad9ce207c9af70bb795f7ac8ed9fd5a571:TSA_Game/Logs/AssetImportWorker1-prev.log
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
