@@ -942,6 +942,8 @@ MonoBehaviour:
   gravity: 1
   coyoteTime: 0.25
   dragCoefficient: 0.01
+  groundFriction: 1
+  airAccelMult: 0.5
 --- !u!212 &1871897961
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -269,8 +269,8 @@ MonoBehaviour:
     y: 0
     width: 319
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -672,9 +672,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 4.175483, y: 1.1112032, z: -1.68328}
+    m_Target: {x: 0.6028287, y: 1.9022367, z: -5.7864966}
     speed: 2
-    m_Value: {x: 4.175483, y: 1.1112032, z: -1.68328}
+    m_Value: {x: 0.6028287, y: 1.9022367, z: -5.7864966}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -720,13 +720,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.14768653, y: 0.45063812, z: -0.07587587, w: -0.87713367}
+    m_Target: {x: -0.046382777, y: 0.13206685, z: -0.006182692, w: -0.9901521}
     speed: 2
-    m_Value: {x: -0.14768603, y: 0.45063663, z: -0.07587562, w: -0.87713075}
+    m_Value: {x: -0.046382025, y: 0.1320647, z: -0.006182592, w: -0.9901361}
   m_Size:
-    m_Target: 4.8426695
+    m_Target: 2.5027103
     speed: 2
-    m_Value: 4.8426695
+    m_Value: 2.5027103
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -788,9 +788,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: b6f6ffffc6f6ffff6af7ffff1afbffff
+      m_SelectedIDs: 10720000
+      m_LastClickedID: 29200
+      m_ExpandedIDs: 20f8ffffcaf8ffffc0faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -957,7 +957,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -965,16 +965,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 60
   m_LastFolders:
-  - Assets
+  - Assets/Scripts
   m_LastFoldersGridSize: 60
-  m_LastProjectPath: C:\Users\williamwoodruff\Downloads\Unity\VV-ARTSA-GAME\TSA_Game
+  m_LastProjectPath: C:\Users\benblankenship\Downloads\Unity\TSA Game\VV-ARTSA-GAME\TSA_Game
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 13}
-    m_SelectedIDs: 18710000
-    m_LastClickedID: 28952
-    m_ExpandedIDs: 00000000187100003871000000ca9a3bffffff7f
+    m_SelectedIDs: aa330000
+    m_LastClickedID: 13226
+    m_ExpandedIDs: 00000000c66f000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1002,7 +1002,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000018710000
+    m_ExpandedIDs: 00000000c66f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

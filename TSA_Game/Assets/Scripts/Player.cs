@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public float gravity = 1f;
     public float coyoteTime = 0.5f;
     public float dragCoefficient = 1f;
+    public float groundFriction = 1f;
+    public float airAccelMult = 1f;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
@@ -45,7 +47,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 dragForce = DragForce();
-        rb.velocity += new Vector2(Input.GetAxis("Horizontal") * accel - dragForce.x, ((!grounded) ? -gravity : 0) - dragForce.y);
+        rb.velocity += new Vector2(Input.GetAxis("Horizontal") * (grounded ? accel : accel * airAccelMult) - dragForce.x - (grounded ? groundFriction * rb.velocity.x: 0), ((!grounded) ? -gravity : 0) - dragForce.y);
 
         if ((Input.GetAxis("Vertical") > 0 || Input.GetKeyDown("space")) && (grounded || timeSinceGrounded > 0.0f) && !jumping)
         {
