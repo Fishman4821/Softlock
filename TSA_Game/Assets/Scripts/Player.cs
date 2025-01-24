@@ -68,14 +68,20 @@ public class Player : MonoBehaviour
             sr.flipX = false;
         }
 
-        print(String.Format("vel(x: {0}, y: {1}), grounded: {3}, timeSinceGrounded: {4}, jumping: {5}, terminal_velocity: {8}, dragForce(x: {6}, y: {7}), Horizontal: {9}, Vertical: {2}", rb.velocity.x, rb.velocity.y, Input.GetAxis("Vertical"), grounded, timeSinceGrounded, jumping, dragForce.x, dragForce.y, terminal_velocity(), Input.GetAxis("Horizontal")));
+        //print(String.Format("grounded: {3}, vel(x: {0}, y: {1}), timeSinceGrounded: {4}, jumping: {5}, terminal_velocity: {8}, dragForce(x: {6}, y: {7}), Horizontal: {9}, Vertical: {2}", rb.velocity.x, rb.velocity.y, Input.GetAxis("Vertical"), grounded, timeSinceGrounded, jumping, dragForce.x, dragForce.y, terminal_velocity(), Input.GetAxis("Horizontal")));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {
+    {   
         if (collision.gameObject.tag == "Ground") {
             jumping = false;
-            grounded = true;
+            float playerTop = transform.position.y + transform.position.y * transform.localScale.y / 2;
+            float objectTop = collision.gameObject.transform.position.y + collision.gameObject.transform.position.y * collision.gameObject.transform.localScale.y / 2;
+            if (playerTop - objectTop > 0) { grounded = true; }
+            if (collision.gameObject.name == "Ground2")
+            {
+                print(String.Format("playerTop: {0}, objectTop: {1}, playerTop - objectTop: {2}, grounded: {3}", playerTop, objectTop, playerTop - objectTop, grounded));
+            }
         }
     }
 
