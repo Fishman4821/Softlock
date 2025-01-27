@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public float dragCoefficient = 1f;
     public float groundFriction = 1f;
     public float airAccelMult = 1f;
+    public Transform cameraT;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
@@ -42,6 +43,11 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        cameraT.position = new Vector3(transform.position.x, transform.position.y + 2, cameraT.position.z);
     }
 
     void FixedUpdate()
