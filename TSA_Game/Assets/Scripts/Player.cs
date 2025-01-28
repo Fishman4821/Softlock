@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Player : MonoBehaviour
 {
@@ -13,12 +14,14 @@ public class Player : MonoBehaviour
     public float groundFriction = 1f;
     public float airAccelMult = 1f;
     public Transform cameraT;
+    public float smoothTime = 0.3F;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
     bool grounded = false;
     float timeSinceGrounded = 0.0f;
     bool jumping = false;
+    float cameraY = 0;
 
     Vector2 DragForce()
     {
@@ -44,10 +47,11 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
     }
-
+    Vector3 velocity = new Vector3(0, 0, 0);
     private void Update()
     {
-        cameraT.position = new Vector3(transform.position.x, transform.position.y + 2, cameraT.position.z);
+        Vector3 targetPosition = transform.position + new Vector3(0, 0, -10.0f);
+        cameraT.position = Vector3.SmoothDamp(cameraT.position, targetPosition, ref velocity, smoothTime);
     }
 
     void FixedUpdate()
@@ -84,10 +88,6 @@ public class Player : MonoBehaviour
             float playerTop = transform.position.y + transform.position.y * transform.localScale.y / 2;
             float objectTop = collision.gameObject.transform.position.y + collision.gameObject.transform.position.y * collision.gameObject.transform.localScale.y / 2;
             if (playerTop - objectTop > 0) { grounded = true; }
-            if (collision.gameObject.name == "Ground2")
-            {
-                print(String.Format("playerTop: {0}, objectTop: {1}, playerTop - objectTop: {2}, grounded: {3}", playerTop, objectTop, playerTop - objectTop, grounded));
-            }
         }
     }
 
