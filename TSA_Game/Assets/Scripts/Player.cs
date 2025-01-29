@@ -21,8 +21,8 @@ public class Player : MonoBehaviour
     bool grounded = false;
     float timeSinceGrounded = 0.0f;
     bool jumping = false;
-    float cameraY = 0;
-
+    bool spacePressed = false;
+    
     Vector2 DragForce()
     {
         /*
@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
     {
         Vector3 targetPosition = transform.position + new Vector3(0, 0, -10.0f);
         cameraT.position = Vector3.SmoothDamp(cameraT.position, targetPosition, ref velocity, smoothTime);
+        spacePressed = Input.GetKey("space");
     }
 
     void FixedUpdate()
@@ -59,7 +60,7 @@ public class Player : MonoBehaviour
         Vector2 dragForce = DragForce();
         rb.velocity += new Vector2(Input.GetAxis("Horizontal") * (grounded ? accel : accel * airAccelMult) - dragForce.x - (grounded ? groundFriction * rb.velocity.x: 0), ((!grounded) ? -gravity : 0) - dragForce.y);
 
-        if ((Input.GetAxis("Vertical") > 0 || Input.GetKeyDown("space")) && (grounded || timeSinceGrounded > 0.0f) && !jumping)
+        if (spacePressed && (grounded || timeSinceGrounded > 0.0f) && !jumping)
         {
             rb.AddForce(new Vector2(0, jumpImpulse), ForceMode2D.Impulse);
             jumping = true;
@@ -78,16 +79,22 @@ public class Player : MonoBehaviour
             sr.flipX = false;
         }
 
-        //print(String.Format("grounded: {3}, vel(x: {0}, y: {1}), timeSinceGrounded: {4}, jumping: {5}, terminal_velocity: {8}, dragForce(x: {6}, y: {7}), Horizontal: {9}, Vertical: {2}", rb.velocity.x, rb.velocity.y, Input.GetAxis("Vertical"), grounded, timeSinceGrounded, jumping, dragForce.x, dragForce.y, terminal_velocity(), Input.GetAxis("Horizontal")));
+        //print(String.Format("spacePressed: {10}, grounded: {3}, vel(x: {0}, y: {1}), timeSinceGrounded: {4}, jumping: {5}, terminal_velocity: {8}, dragForce(x: {6}, y: {7}), Horizontal: {9}, Vertical: {2}", rb.velocity.x, rb.velocity.y, Input.GetAxis("Vertical"), grounded, timeSinceGrounded, jumping, dragForce.x, dragForce.y, terminal_velocity(), Input.GetAxis("Horizontal"), spacePressed));
     }
-
+    int here = 0;
     private void OnCollisionEnter2D(Collision2D collision)
     {   
         if (collision.gameObject.tag == "Ground") {
             jumping = false;
             float playerTop = transform.position.y + transform.position.y * transform.localScale.y / 2;
             float objectTop = collision.gameObject.transform.position.y + collision.gameObject.transform.position.y * collision.gameObject.transform.localScale.y / 2;
-            if (playerTop - objectTop > 0) { grounded = true; }
+            if (playerTop - objectTop > 0) { 
+                grounded = true; 
+            } else {
+                print(String.Format("here {0}", here));
+                here++;
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
         }
     }
 

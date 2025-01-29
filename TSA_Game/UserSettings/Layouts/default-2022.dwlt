@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1904
     height: 981
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -269,8 +269,8 @@ MonoBehaviour:
     y: 0
     width: 316
     height: 931
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -685,9 +685,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -6.216207, y: -1.0585202, z: -8.57921}
+    m_Target: {x: -0.53762436, y: -4.7211447, z: 30.063007}
     speed: 2
-    m_Value: {x: -6.216207, y: -1.0585202, z: -8.57921}
+    m_Value: {x: -0.53762436, y: -4.7211447, z: 30.063007}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -733,13 +733,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.09164748, y: 0.027478872, z: -0.0025245952, w: -0.99543005}
+    m_Target: {x: 0.07732622, y: -0.006568103, z: 0.00064479467, w: 0.99704045}
     speed: 2
-    m_Value: {x: -0.09164557, y: 0.027478298, z: -0.0025245426, w: -0.9954093}
+    m_Value: {x: 0.07732187, y: -0.0065677334, z: 0.0006447584, w: 0.99698436}
   m_Size:
-    m_Target: 3.552506
+    m_Target: 16.289383
     speed: 2
-    m_Value: 3.552506
+    m_Value: 16.289383
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -801,9 +801,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 64cbffff9cf3ffff1afbffffd8710000
+      m_SelectedIDs: 96710000
+      m_LastClickedID: 29078
+      m_ExpandedIDs: 76f9ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -970,7 +970,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -978,16 +978,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 60
   m_LastFolders:
-  - Assets
+  - Assets/Scripts
   m_LastFoldersGridSize: 60
-  m_LastProjectPath: C:\Users\williamwoodruff\Downloads\Unity\VV-ARTSA-GAME\TSA_Game
+  m_LastProjectPath: C:\Users\benblankenship\Downloads\Unity\TSA Game\VV-ARTSA-GAME\TSA_Game
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 66}
-    m_SelectedIDs: 1c710000
-    m_LastClickedID: 28956
-    m_ExpandedIDs: 000000001c7100003c71000000ca9a3bffffff7f
+    m_SelectedIDs: 12340000
+    m_LastClickedID: 13330
+    m_ExpandedIDs: 000000005a73000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1015,7 +1015,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001c710000
+    m_ExpandedIDs: 000000005a730000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
