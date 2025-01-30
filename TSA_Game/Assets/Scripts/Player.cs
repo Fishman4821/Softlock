@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
     float timeSinceGrounded = 0.0f;
     bool jumping = false;
     float cameraY = 0;
-    public ParticleSystem dust;
 
     Vector2 DragForce()
     {
@@ -53,7 +52,6 @@ public class Player : MonoBehaviour
     {
         Vector3 targetPosition = transform.position + new Vector3(0, 0, -10.0f);
         cameraT.position = Vector3.SmoothDamp(cameraT.position, targetPosition, ref velocity, smoothTime);
-        createDust();
     }
 
     void FixedUpdate()
@@ -100,10 +98,5 @@ public class Player : MonoBehaviour
             timeSinceGrounded = coyoteTime;
             grounded = false;
         }
-    }
-
-    void createDust()
-    {
-        dust.Play();
     }
 }
