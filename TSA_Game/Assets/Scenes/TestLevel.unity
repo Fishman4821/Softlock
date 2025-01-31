@@ -2337,7 +2337,7 @@ GameObject:
   - component: {fileID: 1871897960}
   - component: {fileID: 1871897964}
   - component: {fileID: 1871897965}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2365,6 +2365,10 @@ MonoBehaviour:
   airAccelMult: 0.26
   cameraT: {fileID: 1041837085}
   smoothTime: 0.3
+  maxAirDashes: 2
+  dashDistance: 5
+  dashTime: 0.05
+  dashCooldown: 0.2
 --- !u!212 &1871897961
 SpriteRenderer:
   m_ObjectHideFlags: 0

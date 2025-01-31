@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
     public float airAccelMult = 1f;
     public Transform cameraT;
     public float smoothTime = 0.3F;
+    public int maxAirDashes = 2;
+    public float dashDistance = 5f;
+    public float dashTime = 0.05f;
+    public float dashCooldown = 0.2f;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
@@ -22,7 +26,11 @@ public class Player : MonoBehaviour
     float timeSinceGrounded = 0.0f;
     bool jumping = false;
     bool spacePressed = false;
-    
+    bool shiftPressed = false;
+    int airDashes = 0;
+    bool canDash = false;
+
+
     Vector2 DragForce()
     {
         /*
@@ -52,7 +60,8 @@ public class Player : MonoBehaviour
     {
         Vector3 targetPosition = transform.position + new Vector3(0, 0, -10.0f);
         cameraT.position = Vector3.SmoothDamp(cameraT.position, targetPosition, ref velocity, smoothTime);
-        spacePressed = Input.GetKey("space");
+        spacePressed = Input.GetKey("space") || Input.GetKey("w");
+        shiftPressed = Input.GetKey(KeyCode.LeftShift);
     }
 
     void FixedUpdate()
@@ -69,7 +78,12 @@ public class Player : MonoBehaviour
         {
             timeSinceGrounded -= Time.deltaTime;
         }
-       
+
+        if (shiftPressed)
+        {
+            StartCoroutine(Dash());
+        }
+
         if (Input.GetAxis("Horizontal") < 0)
         {
             sr.flipX = true;
@@ -89,7 +103,8 @@ public class Player : MonoBehaviour
             float playerTop = transform.position.y + transform.position.y * transform.localScale.y / 2;
             float objectTop = collision.gameObject.transform.position.y + collision.gameObject.transform.position.y * collision.gameObject.transform.localScale.y / 2;
             if (playerTop - objectTop > 0) { 
-                grounded = true; 
+                grounded = true;
+                airDashes = 2;
             } else {
                 print(String.Format("here {0}", here));
                 here++;
@@ -105,5 +120,17 @@ public class Player : MonoBehaviour
             timeSinceGrounded = coyoteTime;
             grounded = false;
         }
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(transform.localScale.x * dashDistance, 0f);
+        yield return new WaitForSeconds(dashTime);
+        rb.gravityScale = originalGravity;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 }
