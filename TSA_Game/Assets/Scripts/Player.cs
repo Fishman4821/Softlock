@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
         Vector2 dragForce = DragForce();
         rb.velocity += new Vector2(Input.GetAxis("Horizontal") * (grounded ? accel : accel * airAccelMult) - dragForce.x - (grounded ? groundFriction * rb.velocity.x: 0), ((!grounded) ? -gravity : 0) - dragForce.y);
 
-        if (spacePressed && (grounded || timeSinceGrounded > 0.0f) && !jumping)
+        if ((Input.GetAxis("Vertical") > 0 || Input.GetKeyDown("space")) && (grounded || timeSinceGrounded > 0.0f) && !jumping)
         {
             rb.AddForce(new Vector2(0, jumpImpulse), ForceMode2D.Impulse);
             jumping = true;
@@ -93,9 +93,9 @@ public class Player : MonoBehaviour
             sr.flipX = false;
         }
 
-        //print(String.Format("spacePressed: {10}, grounded: {3}, vel(x: {0}, y: {1}), timeSinceGrounded: {4}, jumping: {5}, terminal_velocity: {8}, dragForce(x: {6}, y: {7}), Horizontal: {9}, Vertical: {2}", rb.velocity.x, rb.velocity.y, Input.GetAxis("Vertical"), grounded, timeSinceGrounded, jumping, dragForce.x, dragForce.y, terminal_velocity(), Input.GetAxis("Horizontal"), spacePressed));
+        //print(String.Format("grounded: {3}, vel(x: {0}, y: {1}), timeSinceGrounded: {4}, jumping: {5}, terminal_velocity: {8}, dragForce(x: {6}, y: {7}), Horizontal: {9}, Vertical: {2}", rb.velocity.x, rb.velocity.y, Input.GetAxis("Vertical"), grounded, timeSinceGrounded, jumping, dragForce.x, dragForce.y, terminal_velocity(), Input.GetAxis("Horizontal")));
     }
-    int here = 0;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {   
         if (collision.gameObject.tag == "Ground") {
