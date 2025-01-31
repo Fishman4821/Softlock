@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     int airDashes = 0;
     bool canDash = false;
 
+    [SerializeField] private TrailRenderer tr;
+
 
     Vector2 DragForce()
     {
@@ -96,6 +98,7 @@ public class Player : MonoBehaviour
         //print(String.Format("grounded: {3}, vel(x: {0}, y: {1}), timeSinceGrounded: {4}, jumping: {5}, terminal_velocity: {8}, dragForce(x: {6}, y: {7}), Horizontal: {9}, Vertical: {2}", rb.velocity.x, rb.velocity.y, Input.GetAxis("Vertical"), grounded, timeSinceGrounded, jumping, dragForce.x, dragForce.y, terminal_velocity(), Input.GetAxis("Horizontal")));
     }
 
+    int here = 0;
     private void OnCollisionEnter2D(Collision2D collision)
     {   
         if (collision.gameObject.tag == "Ground") {
@@ -128,7 +131,9 @@ public class Player : MonoBehaviour
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * dashDistance, 0f);
+        tr.emitting = true;
         yield return new WaitForSeconds(dashTime);
+        tr.emitting = false;
         rb.gravityScale = originalGravity;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
