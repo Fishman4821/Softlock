@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     public float dashTime = 0.05f;
     public float dashCooldown = 0.2f;
 
+    public CoinManager cm;
+
     Rigidbody2D rb;
     SpriteRenderer sr;
     bool grounded = false;
@@ -137,5 +139,14 @@ public class Player : MonoBehaviour
         rb.gravityScale = originalGravity;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+            cm.coinCount++;
+        }
     }
 }
