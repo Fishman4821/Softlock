@@ -8,7 +8,7 @@ public class CoinManager : MonoBehaviour
 {
 
     public int coinCount;
-    public TextMeshPro coinText;
+    public TextMeshProUGUI coinText;
 
     // Start is called before the first frame update
     void Start()
