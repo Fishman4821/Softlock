@@ -2449,7 +2449,7 @@ GameObject:
   - component: {fileID: 1871897964}
   - component: {fileID: 1871897963}
   - component: {fileID: 1871897965}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2468,15 +2468,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033c533310e17014da15412531fac592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accel: 1
-  jumpImpulse: 11
+  accel: 3.6
+  jumpImpulse: 14
   gravity: 1
-  coyoteTime: 0.25
+  coyoteTime: 0.1
   dragCoefficient: 0.01
-  groundFriction: 0.12
-  airAccelMult: 0.26
+  groundFriction: 0.5
+  airAccelMult: 0.07
   cameraT: {fileID: 1041837085}
-  smoothTime: 0.3
+  smoothTime: 0.15
   maxAirDashes: 2
   dashDistance: 25
   dashTime: 0.5
