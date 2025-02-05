@@ -30,10 +30,16 @@ public class Player : MonoBehaviour
     bool spacePressed = false;
     bool shiftPressed = false;
     int airDashes = 0;
+<<<<<<< Updated upstream
     bool canDash = false;
 
     [SerializeField] private TrailRenderer tr;
 
+=======
+    bool canDash = true;
+    int horizontalLastHeldDirection = 0;
+    bool dashNoGravity = false;
+>>>>>>> Stashed changes
 
     Vector2 DragForce()
     {
@@ -66,12 +72,21 @@ public class Player : MonoBehaviour
         cameraT.position = Vector3.SmoothDamp(cameraT.position, targetPosition, ref velocity, smoothTime);
         spacePressed = Input.GetKey("space") || Input.GetKey("w");
         shiftPressed = Input.GetKey(KeyCode.LeftShift);
+        float horizontal = Input.GetAxis("Horizontal");
+        if (horizontal < 0)
+        {
+            horizontalLastHeldDirection = -1;
+        } else if (horizontal > 0)
+        {
+            horizontalLastHeldDirection = 1;
+        }
+        if (grounded) { jumping = false; }
     }
 
     void FixedUpdate()
     {
         Vector2 dragForce = DragForce();
-        rb.velocity += new Vector2(Input.GetAxis("Horizontal") * (grounded ? accel : accel * airAccelMult) - dragForce.x - (grounded ? groundFriction * rb.velocity.x: 0), ((!grounded) ? -gravity : 0) - dragForce.y);
+        rb.velocity += new Vector2(Input.GetAxis("Horizontal") * (grounded ? accel : accel * airAccelMult) - dragForce.x - (grounded ? groundFriction * rb.velocity.x: 0), ((!grounded && !dashNoGravity) ? -gravity : 0) - dragForce.y);
 
         if ((Input.GetAxis("Vertical") > 0 || Input.GetKeyDown("space")) && (grounded || timeSinceGrounded > 0.0f) && !jumping)
         {
@@ -83,7 +98,7 @@ public class Player : MonoBehaviour
             timeSinceGrounded -= Time.deltaTime;
         }
 
-        if (shiftPressed)
+        if (shiftPressed && canDash && (airDashes > 0 || grounded))
         {
             StartCoroutine(Dash());
         }
@@ -97,18 +112,21 @@ public class Player : MonoBehaviour
             sr.flipX = false;
         }
 
-        //print(String.Format("grounded: {3}, vel(x: {0}, y: {1}), timeSinceGrounded: {4}, jumping: {5}, terminal_velocity: {8}, dragForce(x: {6}, y: {7}), Horizontal: {9}, Vertical: {2}", rb.velocity.x, rb.velocity.y, Input.GetAxis("Vertical"), grounded, timeSinceGrounded, jumping, dragForce.x, dragForce.y, terminal_velocity(), Input.GetAxis("Horizontal")));
+        print(String.Format("airDashes: {11}, canDash: {10}, grounded: {3}, vel(x: {0}, y: {1}), timeSinceGrounded: {4}, jumping: {5}, terminal_velocity: {8}, dragForce(x: {6}, y: {7}), Horizontal: {9}, Vertical: {2}", rb.velocity.x, rb.velocity.y, Input.GetAxis("Vertical"), grounded, timeSinceGrounded, jumping, dragForce.x, dragForce.y, terminal_velocity(), Input.GetAxis("Horizontal"), canDash, airDashes));
     }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     int here = 0;
     private void OnCollisionEnter2D(Collision2D collision)
     {   
         if (collision.gameObject.tag == "Ground") {
-            jumping = false;
             float playerTop = transform.position.y + transform.position.y * transform.localScale.y / 2;
             float objectTop = collision.gameObject.transform.position.y + collision.gameObject.transform.position.y * collision.gameObject.transform.localScale.y / 2;
             if (playerTop - objectTop > 0) { 
                 grounded = true;
+                jumping = false;
                 airDashes = 2;
             } else {
                 print(String.Format("here {0}", here));
@@ -130,6 +148,7 @@ public class Player : MonoBehaviour
     private IEnumerator Dash()
     {
         canDash = false;
+<<<<<<< Updated upstream
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * dashDistance, 0f);
@@ -137,6 +156,13 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(dashTime);
         tr.emitting = false;
         rb.gravityScale = originalGravity;
+=======
+        if (!grounded) { airDashes--; }
+        dashNoGravity = true;
+        rb.velocity = new Vector2(dashDistance * horizontalLastHeldDirection, 0f);
+        yield return new WaitForSeconds(dashTime);
+        dashNoGravity = false;
+>>>>>>> Stashed changes
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
