@@ -31,10 +31,16 @@ public class Player : MonoBehaviour
     bool shiftPressed = false;
     int airDashes = 0;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     bool canDash = false;
 
     [SerializeField] private TrailRenderer tr;
 
+=======
+    bool canDash = true;
+    int horizontalLastHeldDirection = 0;
+    bool dashNoGravity = false;
+>>>>>>> Stashed changes
 =======
     bool canDash = true;
     int horizontalLastHeldDirection = 0;
@@ -115,7 +121,10 @@ public class Player : MonoBehaviour
         print(String.Format("airDashes: {11}, canDash: {10}, grounded: {3}, vel(x: {0}, y: {1}), timeSinceGrounded: {4}, jumping: {5}, terminal_velocity: {8}, dragForce(x: {6}, y: {7}), Horizontal: {9}, Vertical: {2}", rb.velocity.x, rb.velocity.y, Input.GetAxis("Vertical"), grounded, timeSinceGrounded, jumping, dragForce.x, dragForce.y, terminal_velocity(), Input.GetAxis("Horizontal"), canDash, airDashes));
     }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     int here = 0;
@@ -149,6 +158,7 @@ public class Player : MonoBehaviour
     {
         canDash = false;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * dashDistance, 0f);
@@ -156,6 +166,13 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(dashTime);
         tr.emitting = false;
         rb.gravityScale = originalGravity;
+=======
+        if (!grounded) { airDashes--; }
+        dashNoGravity = true;
+        rb.velocity = new Vector2(dashDistance * horizontalLastHeldDirection, 0f);
+        yield return new WaitForSeconds(dashTime);
+        dashNoGravity = false;
+>>>>>>> Stashed changes
 =======
         if (!grounded) { airDashes--; }
         dashNoGravity = true;
