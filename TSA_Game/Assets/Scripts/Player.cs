@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     bool spacePressed = false;
     bool shiftPressed = false;
     int airDashes = 0;
-    bool canDash = false;
+    bool canDash = true;
 
     [SerializeField] private TrailRenderer tr;
 
@@ -81,6 +81,20 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        Vector2 pos = new Vector2(transform.position.x, transform.position.y);
+        RaycastHit2D groundedRay1 = Physics2D.Raycast(pos + new Vector2(-0.5f, -0.5f), new Vector2(0, -1), 0.05f);
+        RaycastHit2D groundedRay2 = Physics2D.Raycast(pos + new Vector2(0.5f, -0.5f), new Vector2(0, -1), 0.05f);
+        Debug.DrawLine(transform.position + new Vector3(-0.5f, -0.5f), transform.position + new Vector3(-0.5f, -0.55f), groundedRay1 ? Color.blue : Color.red, 0.05f, true);
+        Debug.DrawLine(transform.position + new Vector3(0.5f, -0.5f), transform.position + new Vector3(0.5f, -0.55f), groundedRay2 ? Color.blue : Color.red, 0.05f, true);
+        
+        if (groundedRay1 || groundedRay2)
+        {
+            grounded = true;
+            jumping = false;
+        } else
+        {
+            grounded = false;
+        }
         Vector2 dragForce = DragForce();
         rb.velocity += new Vector2(Input.GetAxis("Horizontal") * (grounded ? accel : accel * airAccelMult) - dragForce.x - (grounded ? groundFriction * rb.velocity.x: 0), ((!grounded && !dashNoGravity) ? -gravity : 0) - dragForce.y);
 
@@ -113,26 +127,26 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {   
-        if (collision.gameObject.tag == "Ground") {
-            float playerTop = transform.position.y + transform.position.y * transform.localScale.y / 2;
-            float objectTop = collision.gameObject.transform.position.y + collision.gameObject.transform.position.y * collision.gameObject.transform.localScale.y / 2;
-            if (playerTop - objectTop > 0) { 
-                grounded = true;
-                jumping = false;
-                airDashes = 2;
-            } else {;
-                rb.velocity = new Vector2(0, rb.velocity.y);
-            }
-        }
+        //if (collision.gameObject.tag == "Ground") {
+        //    float playerTop = transform.position.y + transform.position.y * transform.localScale.y / 2;
+        //    float objectTop = collision.gameObject.transform.position.y + collision.gameObject.transform.position.y * collision.gameObject.transform.localScale.y / 2;
+        //    if (playerTop - objectTop > 0) { 
+        //        grounded = true;
+        //        jumping = false;
+        //        airDashes = 2;
+        //    } else {;
+        //        rb.velocity = new Vector2(0, rb.velocity.y);
+        //    }
+        //}
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
-        {
-            timeSinceGrounded = coyoteTime;
-            grounded = false;
-        }
+        //if (collision.gameObject.tag == "Ground")
+        //{
+        //    timeSinceGrounded = coyoteTime;
+        //    grounded = false;
+        //}
     }
 
     private IEnumerator Dash()
@@ -140,8 +154,10 @@ public class Player : MonoBehaviour
         if (!grounded) { airDashes--; }
         dashNoGravity = true;
         rb.velocity = new Vector2(dashDistance * horizontalLastHeldDirection, 0f);
+        tr.emitting = true;
         yield return new WaitForSeconds(dashTime);
         dashNoGravity = false;
+        tr.emitting = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
