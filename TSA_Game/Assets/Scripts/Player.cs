@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
 
     public CoinManager cm;
 
+    public Sprite normalSprite;
+    public Sprite dashingSprite;
+
     Rigidbody2D rb;
     SpriteRenderer sr;
     bool grounded = false;
@@ -86,12 +89,14 @@ public class Player : MonoBehaviour
         RaycastHit2D groundedRay2 = Physics2D.Raycast(pos + new Vector2(0.5f, -0.5f), new Vector2(0, -1), 0.05f);
         Debug.DrawLine(transform.position + new Vector3(-0.5f, -0.5f), transform.position + new Vector3(-0.5f, -0.55f), groundedRay1 ? Color.blue : Color.red, 0.05f, true);
         Debug.DrawLine(transform.position + new Vector3(0.5f, -0.5f), transform.position + new Vector3(0.5f, -0.55f), groundedRay2 ? Color.blue : Color.red, 0.05f, true);
-        
+
         if (groundedRay1 || groundedRay2)
         {
+            airDashes = 2;
             grounded = true;
             jumping = false;
-        } else
+        }
+        else
         {
             grounded = false;
         }
@@ -151,15 +156,20 @@ public class Player : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        if (!grounded) { airDashes--; }
-        dashNoGravity = true;
-        rb.velocity = new Vector2(dashDistance * horizontalLastHeldDirection, 0f);
-        tr.emitting = true;
-        yield return new WaitForSeconds(dashTime);
-        dashNoGravity = false;
-        tr.emitting = false;
-        yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
+        if (grounded || airDashes > 0) { 
+            if (!grounded) { airDashes--; }
+            sr.sprite = dashingSprite;
+            canDash = false;
+            dashNoGravity = true;
+            rb.velocity = new Vector2(dashDistance * horizontalLastHeldDirection, 0f);
+            tr.emitting = true;
+            yield return new WaitForSeconds(dashTime);
+            sr.sprite = normalSprite;
+            dashNoGravity = false;
+            tr.emitting = false;
+            yield return new WaitForSeconds(dashCooldown);
+            canDash = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
