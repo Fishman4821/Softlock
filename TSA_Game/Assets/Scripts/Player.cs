@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     public float dashDistance = 5f;
     public float dashTime = 0.05f;
     public float dashCooldown = 0.2f;
+    public Vector2 wallJumpForce;
 
     public CoinManager cm;
 
@@ -63,6 +65,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        tr.emitting = false;
     }
     Vector3 velocity = new Vector3(0, 0, 0);
     private void Update()
@@ -100,6 +103,27 @@ public class Player : MonoBehaviour
         {
             grounded = false;
         }
+
+        RaycastHit2D wallJumpLeftRay1 = Physics2D.Raycast(pos + new Vector2(-0.5f, -0.5f), new Vector2(-1, 0), 0.05f);
+        RaycastHit2D wallJumpLeftRay2 = Physics2D.Raycast(pos + new Vector2(-0.5f, 0.5f), new Vector2(-1, 0), 0.05f);
+        Debug.DrawLine(transform.position + new Vector3(-0.5f, -0.5f), transform.position + new Vector3(-0.55f, -0.5f), wallJumpLeftRay1 ? Color.blue : Color.red, 0.05f, true);
+        Debug.DrawLine(transform.position + new Vector3(-0.5f, 0.5f), transform.position + new Vector3(-0.55f, 0.5f), wallJumpLeftRay2 ? Color.blue : Color.red, 0.05f, true);
+
+        if (!grounded && (wallJumpLeftRay1 || wallJumpLeftRay2) && spacePressed)
+        {
+            rb.AddForce(wallJumpForce, ForceMode2D.Impulse);
+        }
+
+        RaycastHit2D wallJumpRightRay1 = Physics2D.Raycast(pos + new Vector2(0.5f, -0.5f), new Vector2(1, 0), 0.05f);
+        RaycastHit2D wallJumpRightRay2 = Physics2D.Raycast(pos + new Vector2(0.5f, 0.5f), new Vector2(1, 0), 0.05f);
+        Debug.DrawLine(transform.position + new Vector3(-0.5f, -0.5f), transform.position + new Vector3(0.55f, -0.5f), wallJumpRightRay1 ? Color.blue : Color.red, 0.05f, true);
+        Debug.DrawLine(transform.position + new Vector3(-0.5f, 0.5f), transform.position + new Vector3(0.55f, 0.5f), wallJumpRightRay2 ? Color.blue : Color.red, 0.05f, true);
+
+        if (!grounded && (wallJumpRightRay1 || wallJumpRightRay2) && spacePressed)
+        {
+            rb.AddForce(new Vector2(-wallJumpForce.x, wallJumpForce.y), ForceMode2D.Impulse);
+        }
+
         Vector2 dragForce = DragForce();
         rb.velocity += new Vector2(Input.GetAxis("Horizontal") * (grounded ? accel : accel * airAccelMult) - dragForce.x - (grounded ? groundFriction * rb.velocity.x: 0), ((!grounded && !dashNoGravity) ? -gravity : 0) - dragForce.y);
 
