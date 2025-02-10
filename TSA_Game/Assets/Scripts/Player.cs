@@ -116,8 +116,8 @@ public class Player : MonoBehaviour
 
         RaycastHit2D wallJumpRightRay1 = Physics2D.Raycast(pos + new Vector2(0.5f, -0.5f), new Vector2(1, 0), 0.05f);
         RaycastHit2D wallJumpRightRay2 = Physics2D.Raycast(pos + new Vector2(0.5f, 0.5f), new Vector2(1, 0), 0.05f);
-        Debug.DrawLine(transform.position + new Vector3(-0.5f, -0.5f), transform.position + new Vector3(0.55f, -0.5f), wallJumpRightRay1 ? Color.blue : Color.red, 0.05f, true);
-        Debug.DrawLine(transform.position + new Vector3(-0.5f, 0.5f), transform.position + new Vector3(0.55f, 0.5f), wallJumpRightRay2 ? Color.blue : Color.red, 0.05f, true);
+        Debug.DrawLine(transform.position + new Vector3(0.5f, -0.5f), transform.position + new Vector3(0.55f, -0.5f), wallJumpRightRay1 ? Color.blue : Color.red, 0.05f, true);
+        Debug.DrawLine(transform.position + new Vector3(0.5f, 0.5f), transform.position + new Vector3(0.55f, 0.5f), wallJumpRightRay2 ? Color.blue : Color.red, 0.05f, true);
 
         if (!grounded && (wallJumpRightRay1 || wallJumpRightRay2) && spacePressed)
         {
