@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public float groundFriction = 1f;
     public float airAccelMult = 1f;
     public Transform cameraT;
+    public Transform backgroundT;
     public float smoothTime = 0.3F;
     public int maxAirDashes = 2;
     public float dashDistance = 5f;
@@ -26,6 +27,8 @@ public class Player : MonoBehaviour
 
     public Sprite normalSprite;
     public Sprite dashingSprite;
+
+    public List<BoxCollider2D> dashWalls;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
@@ -72,6 +75,8 @@ public class Player : MonoBehaviour
     {
         Vector3 targetPosition = transform.position + new Vector3(0, 0, -10.0f);
         cameraT.position = Vector3.SmoothDamp(cameraT.position, targetPosition, ref velocity, smoothTime);
+        backgroundT.position = new Vector3(cameraT.position.x, cameraT.position.y, 1);
+
         spacePressed = Input.GetKey("space") || Input.GetKey("w");
         shiftPressed = Input.GetKey(KeyCode.LeftShift);
         float horizontal = Input.GetAxis("Horizontal");
@@ -182,12 +187,20 @@ public class Player : MonoBehaviour
     {
         if (grounded || airDashes > 0) { 
             if (!grounded) { airDashes--; }
+            foreach(BoxCollider2D i in dashWalls)
+            {
+                i.enabled = false;
+            }
             sr.sprite = dashingSprite;
             canDash = false;
             dashNoGravity = true;
             rb.velocity = new Vector2(dashDistance * horizontalLastHeldDirection, 0f);
             tr.emitting = true;
             yield return new WaitForSeconds(dashTime);
+            foreach (BoxCollider2D i in dashWalls)
+            {
+                i.enabled = true;
+            }
             sr.sprite = normalSprite;
             dashNoGravity = false;
             tr.emitting = false;
