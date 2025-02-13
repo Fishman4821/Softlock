@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
         cameraT.position = Vector3.SmoothDamp(cameraT.position, targetPosition, ref velocity, smoothTime);
         backgroundT.position = new Vector3(cameraT.position.x, cameraT.position.y, 1);
 
-        spacePressed = Input.GetKey("space") || Input.GetKey("w");
+        spacePressed = Input.GetKey("space") || Input.GetKey("w") || Input.GetKey(KeyCode.UpArrow);
         shiftPressed = Input.GetKey(KeyCode.LeftShift);
         float horizontal = Input.GetAxis("Horizontal");
         if (horizontal < 0)
