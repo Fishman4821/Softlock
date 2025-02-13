@@ -3663,6 +3663,10 @@ PrefabInstance:
       propertyPath: cameraT
       value: 
       objectReference: {fileID: 1041837085}
+    - target: {fileID: 1041193616999446007, guid: 2abaa242e3b71884583021dc8e2622c1, type: 3}
+      propertyPath: backgroundT
+      value: 
+      objectReference: {fileID: 1936153177}
     - target: {fileID: 2900496307220491648, guid: 2abaa242e3b71884583021dc8e2622c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

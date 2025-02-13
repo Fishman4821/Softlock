@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
 
     public Sprite normalSprite;
     public Sprite dashingSprite;
+    public Sprite dyingSprite;
 
     public List<BoxCollider2D> dashWalls;
 
