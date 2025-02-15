@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
 
     public List<BoxCollider2D> dashWalls;
 
+    private Collider2D collider;
+    private Vector2 respawnPoint;
+
     Rigidbody2D rb;
     SpriteRenderer sr;
     bool grounded = false;
@@ -42,6 +45,7 @@ public class Player : MonoBehaviour
     bool canDash = true;
 
     [SerializeField] private TrailRenderer tr;
+    [SerializeField] private bool active = true;
 
     int horizontalLastHeldDirection = 0;
     bool dashNoGravity = false;
@@ -70,6 +74,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         tr.emitting = false;
+        collider = GetComponent<Collider2D>();
+        SetRespawnPoint(transform.position);
     }
     Vector3 velocity = new Vector3(0, 0, 0);
     private void Update()
@@ -217,5 +223,34 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             cm.coinCount++;
         }
+    }
+
+    private void MiniJump()
+    {
+        rb.AddForce(new Vector2(0, jumpImpulse), ForceMode2D.Impulse);
+    }
+
+    public void SetRespawnPoint(Vector2 position)
+    {
+        respawnPoint = position;
+    }
+
+    public void Die()
+    {
+        active = false;
+        collider.enabled = false;
+        sr.sprite = dyingSprite;
+        MiniJump();
+        StartCoroutine(Respawn());
+    }
+
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(0.7f);
+        transform.position = respawnPoint;
+        active = true;
+        collider.enabled = true;
+        sr.sprite = normalSprite;
+        MiniJump();
     }
 }
