@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accel: 3.6
-  jumpImpulse: 14
+  jumpImpulse: 15
   gravity: 1
   coyoteTime: 0.1
   dragCoefficient: 0.01
@@ -121,6 +121,7 @@ MonoBehaviour:
   dyingSprite: {fileID: 21300000, guid: 7c23ba516b70ccb43b0b17adb0dc7205, type: 3}
   dashWalls: []
   tr: {fileID: 654293946717825382}
+  active: 1
 --- !u!50 &693232000436448328
 Rigidbody2D:
   serializedVersion: 4

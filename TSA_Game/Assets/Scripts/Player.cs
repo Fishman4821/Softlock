@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
     Vector3 velocity = new Vector3(0, 0, 0);
     private void Update()
     {
-        Vector3 targetPosition = transform.position + new Vector3(0, 0, -10.0f);
+        Vector3 targetPosition = transform.position + new Vector3(0, 2.5f, -10.0f);
         cameraT.position = Vector3.SmoothDamp(cameraT.position, targetPosition, ref velocity, smoothTime);
         backgroundT.position = new Vector3(cameraT.position.x, cameraT.position.y, 1);
 

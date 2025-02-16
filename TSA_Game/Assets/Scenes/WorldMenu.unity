@@ -534,7 +534,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 195766389}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 905598122}
+        m_TargetAssemblyTypeName: LevelTwoSceneChange, Assembly-CSharp
+        m_MethodName: LoadLevelTwoScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &195766389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1577,6 +1589,8 @@ GameObject:
   - component: {fileID: 905598117}
   - component: {fileID: 905598116}
   - component: {fileID: 905598120}
+  - component: {fileID: 905598121}
+  - component: {fileID: 905598122}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1686,6 +1700,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92a0ac6e7d8ee5a428e0e44fe5ad11e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &905598121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905598115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12176708a062ba84195cf1eafb295b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &905598122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905598115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecb5c1b37760014428ac699adfa70944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &930442798
@@ -1904,7 +1942,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1063314684}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 905598121}
+        m_TargetAssemblyTypeName: LevelOneSceneChange, Assembly-CSharp
+        m_MethodName: LoadLevelOneScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1063314684
 MonoBehaviour:
   m_ObjectHideFlags: 0
