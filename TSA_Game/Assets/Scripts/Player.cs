@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
 
     private Collider2D collider;
     private Vector2 respawnPoint;
+    private Transform originalParent;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour
         tr.emitting = false;
         collider = GetComponent<Collider2D>();
         SetRespawnPoint(transform.position);
+        originalParent = transform.parent;
     }
     Vector3 velocity = new Vector3(0, 0, 0);
     private void Update()
@@ -85,7 +87,7 @@ public class Player : MonoBehaviour
         backgroundT.position = new Vector3(cameraT.position.x, cameraT.position.y, 1);
 
         spacePressed = Input.GetKey("space") || Input.GetKey("w") || Input.GetKey(KeyCode.UpArrow);
-        shiftPressed = Input.GetKey(KeyCode.LeftShift);
+        shiftPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         float horizontal = Input.GetAxis("Horizontal");
         if (horizontal < 0)
         {
@@ -121,7 +123,7 @@ public class Player : MonoBehaviour
         Debug.DrawLine(transform.position + new Vector3(-0.5f, -0.5f), transform.position + new Vector3(-0.55f, -0.5f), wallJumpLeftRay1 ? Color.blue : Color.red, 0.05f, true);
         Debug.DrawLine(transform.position + new Vector3(-0.5f, 0.5f), transform.position + new Vector3(-0.55f, 0.5f), wallJumpLeftRay2 ? Color.blue : Color.red, 0.05f, true);
 
-        if (!grounded && (wallJumpLeftRay1 || wallJumpLeftRay2) && spacePressed)
+        if (!grounded && (wallJumpLeftRay1 || wallJumpLeftRay2) && spacePressed && active)
         {
             rb.AddForce(wallJumpForce, ForceMode2D.Impulse);
         }
@@ -131,7 +133,7 @@ public class Player : MonoBehaviour
         Debug.DrawLine(transform.position + new Vector3(0.5f, -0.5f), transform.position + new Vector3(0.55f, -0.5f), wallJumpRightRay1 ? Color.blue : Color.red, 0.05f, true);
         Debug.DrawLine(transform.position + new Vector3(0.5f, 0.5f), transform.position + new Vector3(0.55f, 0.5f), wallJumpRightRay2 ? Color.blue : Color.red, 0.05f, true);
 
-        if (!grounded && (wallJumpRightRay1 || wallJumpRightRay2) && spacePressed)
+        if (!grounded && (wallJumpRightRay1 || wallJumpRightRay2) && spacePressed && active)
         {
             rb.AddForce(new Vector2(-wallJumpForce.x, wallJumpForce.y), ForceMode2D.Impulse);
         }
@@ -139,7 +141,7 @@ public class Player : MonoBehaviour
         Vector2 dragForce = DragForce();
         rb.velocity += new Vector2(Input.GetAxis("Horizontal") * (grounded ? accel : accel * airAccelMult) - dragForce.x - (grounded ? groundFriction * rb.velocity.x: 0), ((!grounded && !dashNoGravity) ? -gravity : 0) - dragForce.y);
 
-        if ((Input.GetAxis("Vertical") > 0 || Input.GetKeyDown("space")) && (grounded || timeSinceGrounded > 0.0f) && !jumping)
+        if ((Input.GetAxis("Vertical") > 0 || Input.GetKeyDown("space")) && (grounded || timeSinceGrounded > 0.0f) && !jumping && active)
         {
             rb.AddForce(new Vector2(0, jumpImpulse), ForceMode2D.Impulse);
             jumping = true;
@@ -149,7 +151,7 @@ public class Player : MonoBehaviour
             timeSinceGrounded -= Time.deltaTime;
         }
 
-        if (shiftPressed && canDash && (airDashes > 0 || grounded))
+        if (shiftPressed && canDash && (airDashes > 0 || grounded) && active)
         {
             StartCoroutine(Dash());
         }
@@ -252,5 +254,16 @@ public class Player : MonoBehaviour
         collider.enabled = true;
         sr.sprite = normalSprite;
         MiniJump();
+    }
+
+    public void SetParent(Transform newParent)
+    {
+        originalParent = transform.parent;
+        transform.parent = newParent;
+    }
+
+    public void ResetParent()
+    {
+        transform.parent = originalParent;
     }
 }
