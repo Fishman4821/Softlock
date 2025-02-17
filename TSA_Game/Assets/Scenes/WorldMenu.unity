@@ -1067,7 +1067,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 554475880}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 905598126}
+        m_TargetAssemblyTypeName: LevelSixSceneChange, Assembly-CSharp
+        m_MethodName: LoadLevelSixScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &554475880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1618,6 +1630,7 @@ GameObject:
   - component: {fileID: 905598123}
   - component: {fileID: 905598124}
   - component: {fileID: 905598125}
+  - component: {fileID: 905598126}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1787,6 +1800,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8cbcfea414f9a94eb1584cc34f79b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &905598126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905598115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d7c29fe9d521d439be3c1f7282af0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &930442798
