@@ -394,6 +394,7 @@
 "Assets/Scripts/LevelFiveSceneChange.cs"
 "Assets/Scripts/LevelFourSceneChange.cs"
 "Assets/Scripts/LevelOneSceneChange.cs"
+"Assets/Scripts/LevelSevenSceneChange.cs"
 "Assets/Scripts/LevelSixSceneChange.cs"
 "Assets/Scripts/LevelThreeSceneChange.cs"
 "Assets/Scripts/LevelTwoSceneChange.cs"
